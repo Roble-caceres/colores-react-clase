@@ -1,6 +1,9 @@
-import { useState } from "react"
+import { useState,useContext } from "react"
+import Contexto from "./Contexto"
 
 function ModalEditar({id,r,g,b,actualizarColor,setEditando}){
+    
+    let {token} = useContext(Contexto)
 
     let [inputR,setInputR] = useState(r)
     let [inputG,setInputG] = useState(g)
@@ -26,7 +29,8 @@ function ModalEditar({id,r,g,b,actualizarColor,setEditando}){
                               method : "PATCH",
                               body : JSON.stringify({r,g,b}),
                               headers : {
-                                      "Content-Type" : "application/json"
+                                      "Content-Type" : "application/json",
+                                        'Authorization' : "Bearer " + token
                                }
                             })
                             .then(({status}) => {

@@ -13,13 +13,14 @@ function Login() {
 
   return token ? <Navigate to="/" /> : <form onSubmit={ evento => {
                      evento.preventDefault()
-                     console.log(usuario,password)
                      
+
                       fetch('https://api-colores-clase-qy68.onrender.com/login',{
                         method : "POST",
                         body : JSON.stringify({usuario,password}),
                         headers : {
-                          'Content-Type' : 'application/json'
+                          'Content-Type' : 'application/json',
+                           
                         }
                       })
                       .then(respuesta => {
@@ -29,7 +30,7 @@ function Login() {
                         throw respuesta.status
                       })
                       .then(({token}) => {
-                          console.log(token)
+                          setToken(token)
                       })
                       .catch(e => {
                           console.log("informar a usuario error: " + e)

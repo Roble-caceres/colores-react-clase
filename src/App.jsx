@@ -7,7 +7,7 @@ import Color from './Color'
 
 function App() {
 
-  let {token} = useContext(Contexto)
+  let {token,setToken} = useContext(Contexto)
 
   let [colores,setColores] = useState([])
 
@@ -45,6 +45,11 @@ function App() {
             colores.map(({_id,r,g,b}) => <Color key={_id} id={_id} r={r} g={g} b={b} borrarColor={borrarColor} actualizarColor={actualizarColor} />)
           }
         </ul>
+        <button className="logout" onClick={() =>{
+          setColores([])
+          setToken(null)
+
+        } }> log out</button>
         </>
 }
 

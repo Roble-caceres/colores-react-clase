@@ -1,7 +1,9 @@
-import { useState } from "react"
+import { useState,useContext } from "react"
+import Contexto from "./Contexto"
 
 function Formulario({crearColor}){
 
+    let {token} = useContext(Contexto)
     let [textoInput,setTextoInput] = useState("")
     let [error,setError] = useState(false)
     
@@ -29,7 +31,8 @@ function Formulario({crearColor}){
                     method : "POST",
                     body : JSON.stringify({r,g,b}),
                     headers : {
-                        "Content-Type" : "application/json"
+                        "Content-Type" : "application/json",
+                        'Authorization' : "Bearer " + token
                     }
                 })
                 .then(respuesta => respuesta.json())
