@@ -28,7 +28,7 @@ input[type="text"]{
     font-size:1.5em;
     width:calc(100% - 10px);
 }
-input[type="submit"]{
+input[type="submit"],input[type="password"]{
     background-color:transparent;
     border:1px dashed #777;
     border-radius:10px;

@@ -1,13 +1,22 @@
-import { useState,useEffect } from 'react'
+import { useState,useEffect,useContext } from 'react'
+import { Navigate } from 'react-router-dom'
+import Contexto from './Contexto'
 import Formulario from './Formulario'
 import Color from './Color'
 
+
 function App() {
+
+  let {token} = useContext(Contexto)
 
   let [colores,setColores] = useState([])
 
   useEffect(() => {
-    fetch('https://api-colores-clase-qy68.onrender.com/colores')
+    fetch('https://api-colores-clase-qy68.onrender.com/colores',{
+      headers : {
+        'Authorization' : "Bearer " + token
+      }
+    })
     .then(respuesta => respuesta.json())
     .then(colores => setColores(colores))
       
@@ -29,7 +38,7 @@ function App() {
       }))
   }
 
-  return <>
+  return !token ? <Navigate to="/login" /> : <>
         <Formulario crearColor={crearColor} />
         <ul>
           {
