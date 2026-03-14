@@ -2,7 +2,7 @@ import { useState,useContext } from "react"
 import Contexto from "./Contexto"
 
 function ModalEditar({id,r,g,b,actualizarColor,setEditando}){
-    
+
     let {token} = useContext(Contexto)
 
     let [inputR,setInputR] = useState(r)
